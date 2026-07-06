@@ -36,6 +36,7 @@ if ok:
 
     if len(selected) != sum(nums):
         st.write("人数が合わない")
+        st.write(sum(nums),"枠")
 
     rd.shuffle(selected)
 
