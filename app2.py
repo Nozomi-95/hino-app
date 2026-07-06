@@ -1,4 +1,5 @@
 import streamlit as st
+import random as rd
 
 options = ["りんご", "みかん", "バナナ", "ぶどう"]
 
@@ -10,19 +11,26 @@ with st.form("form"):
         st.session_state.default = options
 
     selected = st.multiselect(
-        "選択",
         options,
         default=st.session_state.default
     )
 
-    text = st.text_input("数字をカンマ区切りで入力（例: 1,2,3）")
+    text = st.text_input("数字をカンマ区切りで入力")
 
     ok = st.form_submit_button("OK")
 
 if ok:
     nums = [int(x.strip()) for x in text.split(",") if x.strip() != ""]
-    st.write("確定:", nums)
-    
-    st.error("数字以外が含まれています")
-
+    st.write(nums)
     st.write(selected)
+    st.write(len(selected),"人")
+
+"""
+if len(selected) != sum(nums):
+    st.write("人数が合わない")
+
+rd.shuffle(selected)
+
+for i in nums:
+    st.write(" ".join(selected[:i]))
+    selected."""
