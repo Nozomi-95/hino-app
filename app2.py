@@ -1,16 +1,19 @@
 import streamlit as st
 import random as rd
+import streamlit as st
 
-options = ["りんご", "みかん", "バナナ", "ぶどう"]
+options = ["林", "森", "森木", "森林"]
 
 if "default" not in st.session_state:
     st.session_state.default = []
 
+if st.button("全選択"):
+    st.session_state.default = options
+
 with st.form("form"):
-    if st.form_submit_button("全選択"):
-        st.session_state.default = options
 
     selected = st.multiselect(
+        "選択してください",
         options,
         default=st.session_state.default
     )
@@ -21,9 +24,10 @@ with st.form("form"):
 
 if ok:
     nums = [int(x.strip()) for x in text.split(",") if x.strip() != ""]
+
     st.write(nums)
     st.write(selected)
-    st.write(len(selected),"人")
+    st.write(len(selected), "人")
 
 """
 if len(selected) != sum(nums):
