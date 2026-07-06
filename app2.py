@@ -2,7 +2,7 @@ import streamlit as st
 import random as rd
 import streamlit as st
 
-options = ["林", "森", "森木", "森林"]
+options = ["林", "森", "森木", "森林","樹木","希林","木森","森樹"]
 
 if "default" not in st.session_state:
     st.session_state.default = []
@@ -29,12 +29,11 @@ if ok:
     st.write(selected)
     st.write(len(selected), "人")
 
-"""
-if len(selected) != sum(nums):
-    st.write("人数が合わない")
+    if len(selected) != sum(nums):
+        st.write("人数が合わない")
 
-rd.shuffle(selected)
+    rd.shuffle(selected)
 
-for i in nums:
-    st.write(" ".join(selected[:i]))
-    selected."""
+    for i in nums:
+        st.write(" ".join(selected[:i]))
+        del selected[:i]
