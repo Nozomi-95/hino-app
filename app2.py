@@ -9,23 +9,27 @@ import streamlit as st
 
 options = ["りんご", "みかん", "バナナ", "ぶどう"]
 
-if "selected" not in st.session_state:
-    st.session_state.selected = []
+if "default" not in st.session_state:
+    st.session_state.default = []
 
-# 全選択ボタン
-if st.button("全選択"):
-    st.session_state.selected = options
+with st.form("my_form"):
+    col1, col2 = st.columns(2)
 
-# 解除ボタン（おまけ）
-if st.button("全解除"):
-    st.session_state.selected = []
+    with col1:
+        if st.form_submit_button("全選択"):
+            st.session_state.default = options
 
-selected = st.multiselect(
-    "果物を選択",
-    options,
-    default=st.session_state.selected
-)
+    with col2:
+        if st.form_submit_button("全解除"):
+            st.session_state.default = []
 
-st.session_state.selected = selected
+    selected = st.multiselect(
+        "果物を選択",
+        options,
+        default=st.session_state.default
+    )
 
-st.write("選択中:", selected)
+    ok = st.form_submit_button("OK")
+
+if ok:
+    st.write("確定:", selected)
