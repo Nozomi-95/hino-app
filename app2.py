@@ -15,9 +15,14 @@ with st.form("form"):
         default=st.session_state.default
     )
 
+    text = st.text_input("数字をカンマ区切りで入力（例: 1,2,3）")
+
     ok = st.form_submit_button("OK")
 
 if ok:
-    st.write(selected)
-
+    nums = [int(x.strip()) for x in text.split(",") if x.strip() != ""]
+    st.write("確定:", nums)
     
+    st.error("数字以外が含まれています")
+
+    st.write(selected)
